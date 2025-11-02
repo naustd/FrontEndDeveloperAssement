@@ -1,6 +1,14 @@
 import React from "react";
-import { Document, Page, View, Text, StyleSheet } from "@react-pdf/renderer";
-
+import {
+  Document,
+  Page,
+  View,
+  Text,
+  StyleSheet,
+  Image,
+} from "@react-pdf/renderer";
+import boredmLogo from "../logos/restapi.png";
+import waterLogo from "../logos/image.png";
 const styles = StyleSheet.create({
   page: {
     padding: 20,
@@ -22,6 +30,7 @@ const styles = StyleSheet.create({
     borderColor: "#000",
     justifyContent: "center",
     alignItems: "center",
+    flexDirection: "row",
   },
   headerCenter: {
     width: "55%",
@@ -37,16 +46,23 @@ const styles = StyleSheet.create({
     paddingVertical: 6,
   },
   companyName: {
-    fontSize: 11,
+    fontSize: 14,
+    fontWeight: "bold",
+    color: "#000",
+    letterSpacing: 1,
+  },
+  companyNameEnd: {
+    color: "#7d7d7d",
     fontWeight: "bold",
   },
   projectTitle: {
-    fontSize: 11,
+    fontSize: 13,
     fontWeight: "bold",
+    marginBottom: 18,
   },
   projectSubtitle: {
     fontSize: 9,
-    marginTop: 2,
+    fontWeight: "bold",
   },
   codeLabel: {
     fontSize: 16,
@@ -88,7 +104,6 @@ const styles = StyleSheet.create({
     width: "25%",
     fontWeight: "bold",
     padding: 5,
-    
   },
   value: {
     width: "25%",
@@ -100,49 +115,45 @@ const styles = StyleSheet.create({
     width: "25%",
     fontWeight: "bold",
     padding: 5,
-    
   },
   value2: {
     width: "25%",
     padding: 5,
   },
 
-  // ===== HAMMER + BRAND ADDRESS ROW =====
-  hammerRowWrapper: {
+  hammerRow: {
     flexDirection: "row",
-    width: "100%",
     borderTopWidth: 1,
     borderColor: "#000",
-  },
-  hammerSection: {
-    flexDirection: "row",
-    width: "50%", // Hammer Type part remains left half
-   
-  },
-  hammerLabel: {
-    width: "50%",
-    fontWeight: "bold",
-    padding: 5,
-   
-  },
-  hammerValue: {
-    width: "50%",
-    padding: 5,
+    width: "100%",
   },
 
-  brandSection: {
-    flexDirection: "row",
-    flex: 1, // fills remaining width (including under remarks)
-  },
-  brandLabel: {
-    width: "30%",
+  hammerLabel: {
+    width: "20%", // aligns with Drilling Firm
     fontWeight: "bold",
-    padding: 5,
-   
+    paddingVertical: 4,
+    paddingHorizontal: 5,
   },
+
+  hammerValue: {
+    width: "17.5%", // aligns with BoreDM Drilling column
+    paddingVertical: 4,
+    paddingHorizontal: 5,
+    borderRightWidth: 1,
+    borderColor: "#000",
+  },
+
+  brandLabel: {
+    width: "18%", // aligns with "Project No." column
+    fontWeight: "bold",
+    paddingVertical: 4,
+    paddingHorizontal: 5,
+  },
+
   brandValue: {
-    flex: 1,
-    padding: 5,
+    width: "30%", // aligns with "25-3332" column under Remarks
+    paddingVertical: 4,
+    paddingHorizontal: 5,
   },
 
   // ===== REMARKS =====
@@ -162,7 +173,13 @@ export default function ResultDoc() {
         {/* ===== HEADER ===== */}
         <View style={styles.headerContainer}>
           <View style={styles.headerLeft}>
-            <Text style={styles.companyName}>BOREDM</Text>
+            <Image
+              src={boredmLogo}
+              style={{ width: 25, height: 25, marginBottom: 4 }}
+            />
+            <Text style={styles.companyName}>
+              BORE<Text style={styles.companyNameEnd}>DM</Text>
+            </Text>
           </View>
 
           <View style={styles.headerCenter}>
@@ -205,7 +222,10 @@ export default function ResultDoc() {
               </View>
 
               <View style={styles.row}>
-                <Text style={styles.label}>Water:</Text>
+                <Text style={styles.label}>
+                  <Image src={waterLogo} />
+                  Water:
+                </Text>
                 <Text style={styles.value}>N/A</Text>
                 <Text style={styles.label2}>Boring Elevation:</Text>
                 <Text style={styles.value2}>N/A</Text>
@@ -220,20 +240,24 @@ export default function ResultDoc() {
           </View>
 
           {/* HAMMER TYPE + BRAND ADDRESS ROW */}
-          <View style={styles.hammerRowWrapper}>
-            {/* Hammer Type */}
-            <View style={styles.hammerSection}>
-              <Text style={styles.hammerLabel}>Hammer Type:</Text>
-              <Text style={styles.hammerValue}>-</Text>
-            </View>
 
-            {/* Brand Address (extends under remarks) */}
-            <View style={styles.brandSection}>
-              <Text style={styles.brandLabel}>Brand Address:</Text>
-              <Text style={styles.brandValue}>
-                4909 N. 44th St, Phoenix, AZ 85018
-              </Text>
-            </View>
+          {/* Hammer Type */}
+          {/* <View style={styles.hammerSection}>
+            <Text style={styles.hammerLabel}>Hammer Type:</Text>
+            <Text style={styles.hammerValue}>-</Text>
+            <Text style={styles.brandLabel}>Brand Address:</Text>
+            <Text style={styles.brandValue}>
+              4909 N. 44th St, Phoenix, AZ 85018
+            </Text>
+          </View> */}
+          {/* Hammer Type + Brand Address (perfectly aligned) */}
+          <View style={styles.hammerRow}>
+            <Text style={styles.hammerLabel}>Hammer Type:</Text>
+            <Text style={styles.hammerValue}>-</Text>
+            <Text style={styles.brandLabel}>Brand Address:</Text>
+            <Text style={styles.brandValue}>
+              4909 N. 44th St, Phoenix, AZ 85018
+            </Text>
           </View>
         </View>
       </Page>
