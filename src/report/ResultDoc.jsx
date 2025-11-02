@@ -143,14 +143,14 @@ const styles = StyleSheet.create({
   },
 
   brandLabel: {
-    width: "15%", // aligns with "Project No." column
+    width: "18%", // aligns with "Project No." column
     fontWeight: "bold",
     paddingVertical: 4,
     paddingHorizontal: 5,
   },
 
   brandValue: {
-    width: "25%", // aligns with "25-3332" column under Remarks
+    width: "30%", // aligns with "25-3332" column under Remarks
     paddingVertical: 4,
     paddingHorizontal: 5,
   },
