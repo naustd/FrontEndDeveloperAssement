@@ -8,6 +8,7 @@ import {
   Image,
 } from "@react-pdf/renderer";
 import boredmLogo from "../logos/restapi.png";
+import waterLogo from "../logos/image.png";
 const styles = StyleSheet.create({
   page: {
     padding: 20,
@@ -221,14 +222,10 @@ export default function ResultDoc() {
               </View>
 
               <View style={styles.row}>
-                <Text style={styles.label}>Water:</Text>
-                <Text style={styles.value}>N/A</Text>
-                <Text style={styles.label2}>Boring Elevation:</Text>
-                <Text style={styles.value2}>N/A</Text>
-              </View>
-
-              <View style={styles.row}>
-                <Text style={styles.label}>Water:</Text>
+                <Text style={styles.label}>
+                  <Image src={waterLogo} />
+                  Water:
+                </Text>
                 <Text style={styles.value}>N/A</Text>
                 <Text style={styles.label2}>Boring Elevation:</Text>
                 <Text style={styles.value2}>N/A</Text>
