@@ -29,7 +29,6 @@ const styles = StyleSheet.create({
     borderColor: "#000",
     justifyContent: "center",
     alignItems: "center",
-    paddingHorizontal: 4,
   },
   headerRight: {
     width: "20%",
@@ -57,24 +56,25 @@ const styles = StyleSheet.create({
     fontSize: 8,
   },
 
-  // ===== TABLE =====
-  tableContainer: {
-    flexDirection: "row",
+  // ===== TABLE + REMARKS SECTION =====
+  tableWrapper: {
     borderLeftWidth: 1,
     borderRightWidth: 1,
     borderBottomWidth: 1,
     borderColor: "#000",
-    flexWrap: "wrap",
     width: "100%",
   },
-
+  tableContent: {
+    flexDirection: "row",
+  },
   leftTable: {
-    width: "75%", // 75% for main table
+    width: "75%",
   },
   rightRemarks: {
-    width: "25%", // 25% for remarks
+    width: "25%",
     borderLeftWidth: 1,
     borderColor: "#000",
+    justifyContent: "flex-start",
     padding: 5,
   },
 
@@ -88,8 +88,7 @@ const styles = StyleSheet.create({
     width: "25%",
     fontWeight: "bold",
     padding: 5,
-    borderRightWidth: 1,
-    borderColor: "#000",
+    
   },
   value: {
     width: "25%",
@@ -101,21 +100,52 @@ const styles = StyleSheet.create({
     width: "25%",
     fontWeight: "bold",
     padding: 5,
-    borderRightWidth: 1,
-    borderColor: "#000",
+    
   },
   value2: {
     width: "25%",
     padding: 5,
   },
 
-  // ===== REMARKS BOX =====
-  remarksBox: {
-    borderBottomWidth: 1,
+  // ===== HAMMER + BRAND ADDRESS ROW =====
+  hammerRowWrapper: {
+    flexDirection: "row",
+    width: "100%",
+    borderTopWidth: 1,
     borderColor: "#000",
-    height: "100%",
-    justifyContent: "flex-start",
   },
+  hammerSection: {
+    flexDirection: "row",
+    width: "50%", // Hammer Type part remains left half
+   
+  },
+  hammerLabel: {
+    width: "50%",
+    fontWeight: "bold",
+    padding: 5,
+   
+  },
+  hammerValue: {
+    width: "50%",
+    padding: 5,
+  },
+
+  brandSection: {
+    flexDirection: "row",
+    flex: 1, // fills remaining width (including under remarks)
+  },
+  brandLabel: {
+    width: "30%",
+    fontWeight: "bold",
+    padding: 5,
+   
+  },
+  brandValue: {
+    flex: 1,
+    padding: 5,
+  },
+
+  // ===== REMARKS =====
   remarksLabel: {
     fontWeight: "bold",
     marginBottom: 4,
@@ -134,12 +164,14 @@ export default function ResultDoc() {
           <View style={styles.headerLeft}>
             <Text style={styles.companyName}>BOREDM</Text>
           </View>
+
           <View style={styles.headerCenter}>
             <Text style={styles.projectTitle}>Riverside Condominiums</Text>
             <Text style={styles.projectSubtitle}>
               General Location - Project
             </Text>
           </View>
+
           <View style={styles.headerRight}>
             <Text style={styles.codeLabel}>B-17</Text>
             <Text style={styles.pageInfo}>Page 1 of 1</Text>
@@ -147,52 +179,60 @@ export default function ResultDoc() {
         </View>
 
         {/* ===== TABLE + REMARKS ===== */}
-        <View style={styles.tableContainer}>
-          {/* Left Table */}
-          <View style={styles.leftTable}>
-            <View style={styles.row}>
-              <Text style={styles.label}>Drilling Firm:</Text>
-              <Text style={styles.value}>BoreDM Drilling</Text>
-              <Text style={styles.label2}>Project No.:</Text>
-              <Text style={styles.value2}>25-3332</Text>
+        <View style={styles.tableWrapper}>
+          <View style={styles.tableContent}>
+            {/* LEFT TABLE */}
+            <View style={styles.leftTable}>
+              <View style={styles.row}>
+                <Text style={styles.label}>Drilling Firm:</Text>
+                <Text style={styles.value}>BoreDM Drilling</Text>
+                <Text style={styles.label2}>Project No.:</Text>
+                <Text style={styles.value2}>25-3332</Text>
+              </View>
+
+              <View style={styles.row}>
+                <Text style={styles.label}>Driller:</Text>
+                <Text style={styles.value}>PA</Text>
+                <Text style={styles.label2}>Date Drilled:</Text>
+                <Text style={styles.value2}>03/05/2025</Text>
+              </View>
+
+              <View style={styles.row}>
+                <Text style={styles.label}>Logged By:</Text>
+                <Text style={styles.value}>LA</Text>
+                <Text style={styles.label2}>Boring Depth:</Text>
+                <Text style={styles.value2}>-</Text>
+              </View>
+
+              <View style={styles.row}>
+                <Text style={styles.label}>Water:</Text>
+                <Text style={styles.value}>N/A</Text>
+                <Text style={styles.label2}>Boring Elevation:</Text>
+                <Text style={styles.value2}>N/A</Text>
+              </View>
             </View>
 
-            <View style={styles.row}>
-              <Text style={styles.label}>Driller:</Text>
-              <Text style={styles.value}>PA</Text>
-              <Text style={styles.label2}>Date Drilled:</Text>
-              <Text style={styles.value2}>03/05/2025</Text>
-            </View>
-
-            <View style={styles.row}>
-              <Text style={styles.label}>Logged By:</Text>
-              <Text style={styles.value}>LA</Text>
-              <Text style={styles.label2}>Boring Depth:</Text>
-              <Text style={styles.value2}>-</Text>
-            </View>
-
-            <View style={styles.row}>
-              <Text style={styles.label}>Water:</Text>
-              <Text style={styles.value}>N/A</Text>
-              <Text style={styles.label2}>Boring Elevation:</Text>
-              <Text style={styles.value2}>N/A</Text>
-            </View>
-
-            <View style={styles.row}>
-              <Text style={styles.label}>Hammer Type:</Text>
-              <Text style={styles.value}>-</Text>
-              <Text style={styles.label2}>Brand Address:</Text>
-              <Text style={styles.value2}>
-                4909 N. 44th St, Phoenix, AZ 85018
-              </Text>
+            {/* RIGHT REMARKS BOX */}
+            <View style={styles.rightRemarks}>
+              <Text style={styles.remarksLabel}>Remarks:</Text>
+              <Text style={styles.remarksText}>-</Text>
             </View>
           </View>
 
-          {/* Remarks Box */}
-          <View style={styles.rightRemarks}>
-            <View style={styles.remarksBox}>
-              <Text style={styles.remarksLabel}>Remarks:</Text>
-              <Text style={styles.remarksText}>-</Text>
+          {/* HAMMER TYPE + BRAND ADDRESS ROW */}
+          <View style={styles.hammerRowWrapper}>
+            {/* Hammer Type */}
+            <View style={styles.hammerSection}>
+              <Text style={styles.hammerLabel}>Hammer Type:</Text>
+              <Text style={styles.hammerValue}>-</Text>
+            </View>
+
+            {/* Brand Address (extends under remarks) */}
+            <View style={styles.brandSection}>
+              <Text style={styles.brandLabel}>Brand Address:</Text>
+              <Text style={styles.brandValue}>
+                4909 N. 44th St, Phoenix, AZ 85018
+              </Text>
             </View>
           </View>
         </View>
